@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PRD Generator - Professional Requirements Documentation</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <h1 class="app-title">PRD Generator</h1>
+            <p class="app-subtitle">Create comprehensive Product Requirements Documents for your website development projects</p>
+        </header>
+
+        <!-- Welcome Screen -->
+        <div id="welcomeScreen" class="welcome-screen">
+            <div class="welcome-content">
+                <h2>Welcome to the PRD Generator</h2>
+                <p>This tool will guide you through creating a comprehensive Product Requirements Document (PRD) for your website development project. The process takes just 5 simple steps:</p>
+                <ul class="welcome-steps">
+                    <li><strong>Step 1:</strong> Project Basics - Name and description</li>
+                    <li><strong>Step 2:</strong> Technical Preferences - Hosting, budget, timeline</li>
+                    <li><strong>Step 3:</strong> Features & Functionality - Core features needed</li>
+                    <li><strong>Step 4:</strong> Design & UX - Visual preferences</li>
+                    <li><strong>Step 5:</strong> Additional Requirements - Security and extras</li>
+                </ul>
+                <p>Most fields are optional - you only need to provide your project name to get started!</p>
+                <button id="startBtn" class="btn btn-primary btn-large">Get Started</button>
+            </div>
+        </div>
+
+        <!-- Multi-Step Form -->
+        <div id="formContainer" class="form-container hidden">
+            <!-- Progress Bar -->
+            <div class="progress-container">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <div class="progress-text" id="progressText">Step 1 of 5</div>
+            </div>
+
+            <!-- Form Steps -->
+            <form id="prdForm" class="prd-form">
+                <!-- Step 1: Project Basics -->
+                <div class="form-step active" data-step="1">
+                    <div class="step-header">
+                        <h2>Step 1: Project Basics</h2>
+                        <p>Tell us about your project. Only the project name is required.</p>
+                    </div>
+                    <div class="form-fields">
+                        <div class="form-group">
+                            <label class="form-label" for="projectName">Project Name <span class="required">*</span></label>
+                            <input type="text" id="projectName" name="projectName" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="projectDescription">Project Description</label>
+                            <textarea id="projectDescription" name="projectDescription" class="form-control" rows="4" placeholder="Describe what you want to build..."></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="businessType">Business Type/Industry</label>
+                            <select id="businessType" name="businessType" class="form-control">
+                                <option value="">Select Business Type</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="targetAudience">Target Audience</label>
+                            <textarea id="targetAudience" name="targetAudience" class="form-control" rows="3" placeholder="Describe your target users..."></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="businessGoals">Key Business Goals</label>
+                            <textarea id="businessGoals" name="businessGoals" class="form-control" rows="3" placeholder="What are your main business objectives?"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 2: Technical Preferences -->
+                <div class="form-step" data-step="2">
+                    <div class="step-header">
+                        <h2>Step 2: Technical Preferences</h2>
+                        <p>All fields are optional. Skip any you're unsure about.</p>
+                    </div>
+                    <div class="form-fields">
+                        <div class="form-group">
+                            <label class="form-label" for="expectedTraffic">Expected Website Traffic</label>
+                            <select id="expectedTraffic" name="expectedTraffic" class="form-control">
+                                <option value="">Select Traffic Level</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="budgetRange">Budget Range</label>
+                            <select id="budgetRange" name="budgetRange" class="form-control">
+                                <option value="">Select Budget Range</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="preferredHosting">Preferred Hosting</label>
+                            <select id="preferredHosting" name="preferredHosting" class="form-control">
+                                <option value="">Select Hosting Option</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="timeline">Timeline</label>
+                            <select id="timeline" name="timeline" class="form-control">
+                                <option value="">Select Timeline</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 3: Features & Functionality -->
+                <div class="form-step" data-step="3">
+                    <div class="step-header">
+                        <h2>Step 3: Features & Functionality</h2>
+                        <p>Select the features you need. All are optional.</p>
+                    </div>
+                    <div class="form-fields">
+                        <div class="form-group">
+                            <label class="form-label">Core Features Needed</label>
+                            <div class="checkbox-grid" id="coreFeatures">
+                                <!-- Features will be populated by JavaScript -->
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="thirdPartyIntegrations">Third-party Integrations</label>
+                            <textarea id="thirdPartyIntegrations" name="thirdPartyIntegrations" class="form-control" rows="3" placeholder="Any specific integrations needed (payment gateways, CRMs, etc.)"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="specialRequirements">Special Requirements</label>
+                            <textarea id="specialRequirements" name="specialRequirements" class="form-control" rows="3" placeholder="Any special functionality or requirements"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 4: Design & UX -->
+                <div class="form-step" data-step="4">
+                    <div class="step-header">
+                        <h2>Step 4: Design & UX</h2>
+                        <p>Define your visual preferences. All fields are optional.</p>
+                    </div>
+                    <div class="form-fields">
+                        <div class="form-group">
+                            <label class="form-label" for="designStyle">Design Style Preference</label>
+                            <select id="designStyle" name="designStyle" class="form-control">
+                                <option value="">Select Design Style</option>
+                            </select>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label" for="primaryColor">Primary Color</label>
+                                <input type="color" id="primaryColor" name="primaryColor" class="form-control color-input" value="#1e3a8a">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="secondaryColor">Secondary Color</label>
+                                <input type="color" id="secondaryColor" name="secondaryColor" class="form-control color-input" value="#64748b">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="fontPreference">Font Preference</label>
+                            <select id="fontPreference" name="fontPreference" class="form-control">
+                                <option value="">Select Font</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Responsive Requirements</label>
+                            <div class="checkbox-list">
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="responsive" value="Mobile-first design">
+                                    Mobile-first design
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="responsive" value="Tablet optimization">
+                                    Tablet optimization
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="responsive" value="Desktop optimization">
+                                    Desktop optimization
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 5: Additional Requirements -->
+                <div class="form-step" data-step="5">
+                    <div class="step-header">
+                        <h2>Step 5: Additional Requirements</h2>
+                        <p>Security and performance preferences. All optional.</p>
+                    </div>
+                    <div class="form-fields">
+                        <div class="form-group">
+                            <label class="form-label">Security Requirements</label>
+                            <div class="checkbox-grid" id="securityFeatures">
+                                <!-- Security features will be populated by JavaScript -->
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Performance Requirements</label>
+                            <div class="checkbox-grid" id="performanceFeatures">
+                                <!-- Performance features will be populated by JavaScript -->
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="additionalComments">Additional Comments</label>
+                            <textarea id="additionalComments" name="additionalComments" class="form-control" rows="4" placeholder="Any other requirements or comments"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Navigation Buttons -->
+                <div class="form-navigation">
+                    <button type="button" id="prevBtn" class="btn btn-secondary">Previous</button>
+                    <button type="button" id="nextBtn" class="btn btn-primary">Next</button>
+                    <button type="button" id="generateBtn" class="btn btn-primary btn-large hidden">Generate PRD</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Results Section -->
+        <div id="resultsSection" class="results-section hidden">
+            <div class="results-header">
+                <h2>Your PRD is Ready!</h2>
+                <p>Review your Product Requirements Document below and download when ready.</p>
+                <button id="downloadBtn" class="btn btn-primary btn-large">Download PRD</button>
+            </div>
+            <div class="preview-container">
+                <div class="preview-header">
+                    <h3>PRD Preview</h3>
+                </div>
+                <div class="preview-content" id="previewContent">
+                    <!-- Generated PRD content will appear here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Loading Overlay -->
+        <div id="loadingOverlay" class="loading-overlay hidden">
+            <div class="loading-content">
+                <div class="loader"></div>
+                <p>Generating your PRD...</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
